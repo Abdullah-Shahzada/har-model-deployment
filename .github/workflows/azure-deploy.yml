@@ -27,10 +27,20 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Deploy Model to Azure ML
+    # Deploy the first model (Iteration 1)
+    - name: Deploy Model - Iteration 1
       run: |
-        az ml model deploy --name my-endpoint \
-                           --model-path ./har_model.pkl \
-                           --environment-name environment.yml \
+        az ml model deploy --name endpoint-iteration1 \
+                           --model-path har_model.pkl \
+                           --environment-file environment.yml \
                            --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-                           --workspace-name ${{ secrets.AZURE_WORKSPACE_NAME }} 
+                           --workspace-name ${{ secrets.AZURE_WORKSPACE_NAME }}
+
+    # Deploy the second model (Iteration 2)
+    - name: Deploy Model - Iteration 2
+      run: |
+        az ml model deploy --name endpoint-iteration2 \
+                           --model-path random_forest_model_v2.pkl \
+                           --environment-file environment.yml \
+                           --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+                           --workspace-name ${{ secrets.AZURE_WORKSPACE_NAME }}
