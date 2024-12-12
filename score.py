@@ -6,7 +6,7 @@ import pandas as pd
 def init():
     global model
     # Load the trained model
-    model = joblib.load('model.pkl')
+    model = joblib.load('har_model.pkl')
 
 def run(data):
     try:
