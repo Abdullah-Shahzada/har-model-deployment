@@ -1,5 +1,4 @@
-
-name: myenv
+name: human_activity_env
 channels:
   - defaults
 dependencies:
@@ -10,4 +9,5 @@ dependencies:
   - joblib
   - pip
   - pip:
+      - mlflow
       - azureml-defaults
